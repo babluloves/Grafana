@@ -1,0 +1,153 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+/* App.css */
+
+/* Styling for the DataDisplay container */
+.DataDisplay {
+  margin-top: 20px;
+}
+
+/* Styling for the Received Data header */
+.DataDisplay h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Flex container for displaying data side by side */
+.DataContainer {
+  display: flex;
+  justify-content: space-between; /* Adjust the spacing between the elements */
+}
+
+/* Styling for each processed data block */
+.ProcessedData {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 10px;
+  width: calc(50% - 10px); /* Each block takes half of the container width */
+  box-sizing: border-box;
+  margin-bottom: 20px; /* Adjust spacing between the data blocks */
+}
+
+/* Styling for table elements */
+.ProcessedData table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ProcessedData th,
+.ProcessedData td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.ProcessedData th {
+  background-color: #f2f2f2;
+}
+/* Style for Datepicker */
+.react-datepicker {
+  font-family: Arial, sans-serif;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+.react-datepicker__input-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.react-datepicker__input-container input {
+  width: 150px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.react-datepicker__time-container {
+  border-top: 1px solid #ccc;
+}
+
+.react-datepicker__time-box {
+  display: flex;
+  justify-content: center;
+}
+
+.react-datepicker__time-list {
+  padding: 5px;
+  list-style: none;
+  margin: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.react-datepicker__time-list-item {
+  padding: 8px 0;
+  cursor: pointer;
+}
+
+.react-datepicker__time-list-item:hover {
+  background-color: #f0f0f0;
+}
+
+/* Add these styles to your existing CSS file */
+.DatePickers {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.DatePickerSection {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.DatePickerSection h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+/* You can adjust these styles according to your preferences */
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
