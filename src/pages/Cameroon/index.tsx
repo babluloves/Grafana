@@ -245,18 +245,7 @@ function Cameroon() {
           processedData.push({ Key: keyLabel, Value: sumOfNextArray });
         });
       }
-    });
-    // Calculate total sum to determine percentages
-      let totalSum = 0;
-      processedData.forEach((item: any) => {
-        totalSum += item.Value;
-      });
-
-      // Calculate and append percentages to processedData
-      processedData.forEach((item: any) => {
-        const percentage = (item.Value / totalSum) * 100;
-        item.Percentage = percentage.toFixed(2) + '%';
-      });
+    });  
       if (callCount === 0) {
         setFirstProcessedData(processedData);
         console.log(firstprocessedData);

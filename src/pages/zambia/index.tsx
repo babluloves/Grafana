@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment-timezone';
+import CustomSpinner from '../Spinner';
 
 function Zambia() {
   const [data, setData] = useState<any[]>([]);
@@ -12,12 +13,12 @@ function Zambia() {
   const [firstToDate, setFirstToDate] = useState<Date | null>(new Date());
   const [secondFromDate, setSecondFromDate] = useState<Date | null>(new Date());
   const [secondToDate, setSecondToDate] = useState<Date | null>(new Date());
-  const [processedData, setProcessedData] = useState<any[]>([]);
   const [firstprocessedData, setFirstProcessedData] = useState<any[]>([]);
   const [secondprocessedData, setSecondProcessedData] = useState<any[]>([]);
   const [processedDataFirst, setProcessedDataFirst] = useState<any[]>([]);
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false);
   const url = 'http://localhost:3001/proxy/zambia';
   let callCount = 0;
 
@@ -144,6 +145,7 @@ function Zambia() {
   };
 
   const fetchData = async () => {
+    setLoading(true);
     const formatDateToISOString = (date: Date | null) => {
       if (!date) return '';
     
@@ -190,6 +192,9 @@ function Zambia() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, // Duration in milliseconds
       });
+    }
+    finally {
+      setLoading(false);
     }
   }
 
@@ -245,17 +250,6 @@ function Zambia() {
         });
       }
     });
-    // Calculate total sum to determine percentages
-      let totalSum = 0;
-      processedData.forEach((item: any) => {
-        totalSum += item.Value;
-      });
-
-      // Calculate and append percentages to processedData
-      processedData.forEach((item: any) => {
-        const percentage = (item.Value / totalSum) * 100;
-        item.Percentage = percentage.toFixed(2) + '%';
-      });
       if (callCount === 0) {
         setFirstProcessedData(processedData);
         console.log(firstprocessedData);
@@ -342,7 +336,11 @@ function Zambia() {
       <div className="DataDisplay">
         <h2>Received Data</h2>
         <div className="DataContainer">
-          <div className="ProcessedData">{processedDataFirst}</div>
+        {loading ? (
+            <CustomSpinner />
+          ) : (
+            <>
+            <div className="ProcessedData">{processedDataFirst}</div>
           <div className="ProcessedData">{processedDataSecond}</div>
           <div className='ProcessedData'>
         {comparisonData ? (
@@ -366,6 +364,8 @@ function Zambia() {
           <div>No comparison data available</div>
         )}
         </div>
+            </>
+           )}
           <ToastContainer />
         </div>
       </div>

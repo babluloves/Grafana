@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomSpinner from '../Spinner';
 import moment from 'moment-timezone';
 
 function Nigeria() {
@@ -17,6 +18,7 @@ function Nigeria() {
   const [processedDataFirst, setProcessedDataFirst] = useState<any[]>([]);
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false)
   let callCount = 0;
   const url = 'http://localhost:3001/proxy/Nigeria';
 
@@ -145,6 +147,7 @@ function Nigeria() {
   };
 
   const fetchData = async () => {
+    setLoading(true)
     const formatDateToISOString = (date: Date | null) => {
       if (!date) return '';
     
@@ -191,6 +194,9 @@ function Nigeria() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, // Duration in milliseconds
       });
+    }
+    finally{
+      setLoading(false)
     }
   }
 
@@ -246,17 +252,6 @@ function Nigeria() {
         });
       }
     });
-    // Calculate total sum to determine percentages
-      let totalSum = 0;
-      processedData.forEach((item: any) => {
-        totalSum += item.Value;
-      });
-
-      // Calculate and append percentages to processedData
-      processedData.forEach((item: any) => {
-        const percentage = (item.Value / totalSum) * 100;
-        item.Percentage = percentage.toFixed(2) + '%';
-      });
       if (callCount === 0) {
         setFirstProcessedData(processedData);
         console.log(firstprocessedData);
@@ -343,10 +338,13 @@ function Nigeria() {
       <div className="DataDisplay">
         <h2>Received Data</h2>
         <div className="DataContainer">
-          <div className="ProcessedData">{processedDataFirst}</div>
+        {loading ? (
+            <CustomSpinner />
+          ) : (
+            <>
+            <div className="ProcessedData">{processedDataFirst}</div>
           <div className="ProcessedData">{processedDataSecond}</div>
-          
-        <div className='ProcessedData'>
+          <div className='ProcessedData'>
         {comparisonData ? (
           <table>
             <thead>
@@ -368,6 +366,8 @@ function Nigeria() {
           <div>No comparison data available</div>
         )}
         </div>
+            </>
+           )}
           <ToastContainer />
         </div>
       </div>
