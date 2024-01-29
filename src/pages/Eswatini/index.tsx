@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment-timezone';
+import CustomSpinner from '../Spinner';
 
 function Eswatini() {
   const [data, setData] = useState<any[]>([]);
@@ -18,7 +19,8 @@ function Eswatini() {
   const [processedDataFirst, setProcessedDataFirst] = useState<any[]>([]);
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
-  const url = 'http://localhost:3001/proxy/Eswatini';
+  const [loading, setLoading] = useState(false);
+  const url = 'http://192.168.0.206:3001/proxy/Eswatini';
   let callCount = 0;
 
   useEffect(() => {
@@ -144,6 +146,7 @@ function Eswatini() {
   };
 
   const fetchData = async () => {
+    setLoading(true)
     const formatDateToISOString = (date: Date | null) => {
       if (!date) return '';
     
@@ -190,6 +193,9 @@ function Eswatini() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, // Duration in milliseconds
       });
+    }
+    finally {
+      setLoading(false);
     }
   }
 
@@ -331,7 +337,11 @@ function Eswatini() {
       <div className="DataDisplay">
         <h2>Received Data</h2>
         <div className="DataContainer">
-          <div className="ProcessedData">{processedDataFirst}</div>
+        {loading ? (
+            <CustomSpinner />
+          ) : (
+            <>
+            <div className="ProcessedData">{processedDataFirst}</div>
           <div className="ProcessedData">{processedDataSecond}</div>
           <div className='ProcessedData'>
         {comparisonData ? (
@@ -355,11 +365,13 @@ function Eswatini() {
           <div>No comparison data available</div>
         )}
         </div>
+            </>
+           )}
           <ToastContainer />
         </div>
       </div>
     </div>
-  );  
+  );    
 }
 
 export default Eswatini;

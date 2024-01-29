@@ -20,7 +20,7 @@ function Nigeria() {
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
   let callCount = 0;
-  const url = 'http://localhost:3001/proxy/Nigeria';
+  const url = 'http://192.168.0.206:3001/proxy/Nigeria';
 
   React.useEffect(() => {
     compareData();

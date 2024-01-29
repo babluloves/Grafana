@@ -4,7 +4,9 @@ import Eswatini from "../pages/Eswatini";
 import Nigeria from "../pages/Nigeria";
 import Cameroon from "../pages/Cameroon";
 import Zambia from "../pages/zambia";
-import DropdownInput from "../pages/Dropdown";
+import NigeriaMonitoring from "../pages/Nigeria/NigeriaMonitoring";
+import CameroonMonitoring from "../pages/Cameroon/Monitoring"
+import EswatiniMonitoring from "../pages/Eswatini/EswatiniMonitoring";
 
 export default function AppRoutes() {
 
@@ -14,7 +16,9 @@ export default function AppRoutes() {
       <Route path="Nigeria" element={<Nigeria />} />
       <Route path="Cameroon" element={<Cameroon />} />
       <Route path="zambia" element={<Zambia/>} />
-      <Route path="Test" element={<DropdownInput/>}/>
+      <Route path="Nigeria/Monitoring" element={<NigeriaMonitoring/>} />
+      <Route path="Cameroon/Monitoring" element={<CameroonMonitoring/>} />
+      <Route path="Eswatini/Monitoring" element={<EswatiniMonitoring/>} />
     </Routes>
     )
 }

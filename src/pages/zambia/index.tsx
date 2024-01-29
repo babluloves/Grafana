@@ -19,7 +19,7 @@ function Zambia() {
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const url = 'http://localhost:3001/proxy/zambia';
+  const url = 'http://localhost:5000/proxy/zambia';
   let callCount = 0;
 
   useEffect(() => {

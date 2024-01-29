@@ -1,0 +1,45 @@
+/* Style for the container of each table */
+.table-container {
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the table itself */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  /* Style for the table header */
+  th {
+    background-color: #f2f2f2;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style for the table body */
+  td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  /* Style for alternating row colors */
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Style for the table title */
+  h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Responsive styling for small screens */
+  @media (max-width: 600px) {
+    th, td {
+      font-size: 12px;
+      padding: 8px;
+    }
+  }
+  

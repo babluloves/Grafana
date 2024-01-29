@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CustomSpinner from '../Spinner';
 import moment from 'moment-timezone';
 
 function Cameroon() {
@@ -17,14 +18,15 @@ function Cameroon() {
   const [processedDataFirst, setProcessedDataFirst] = useState<any[]>([]);
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(false)
   let callCount = 0;
-  const url = 'http://localhost:3001/proxy/cameroon';
+  const url = 'http://192.168.0.206:3001/proxy/Cameroon';
 
   React.useEffect(() => {
     compareData();
   }, [firstprocessedData, secondprocessedData]);
 
-  const performRequest = async (fromUnixTime: number, toUnixTime: number) => {
+   const performRequest = async (fromUnixTime: number, toUnixTime: number) => {
     const postData ={
         "queries": [
           {
@@ -40,7 +42,7 @@ function Cameroon() {
             "refId": "A",
             "queryType": "timeSeriesQuery",
             "exemplar": false,
-            "requestId": "720A",
+            "requestId": "642A",
             "utcOffsetSec": 0,
             "interval": "",
             "datasourceId": 9,
@@ -61,7 +63,7 @@ function Cameroon() {
             "refId": "B",
             "queryType": "timeSeriesQuery",
             "exemplar": false,
-            "requestId": "720B",
+            "requestId": "642B",
             "utcOffsetSec": 0,
             "interval": "",
             "datasourceId": 9,
@@ -82,7 +84,7 @@ function Cameroon() {
             "refId": "C",
             "queryType": "timeSeriesQuery",
             "exemplar": false,
-            "requestId": "720C",
+            "requestId": "642C",
             "utcOffsetSec": 0,
             "interval": "",
             "datasourceId": 9,
@@ -145,6 +147,7 @@ function Cameroon() {
   };
 
   const fetchData = async () => {
+    setLoading(true)
     const formatDateToISOString = (date: Date | null) => {
       if (!date) return '';
     
@@ -191,6 +194,9 @@ function Cameroon() {
         position: toast.POSITION.TOP_RIGHT,
         autoClose: 3000, // Duration in milliseconds
       });
+    }
+    finally{
+      setLoading(false)
     }
   }
 
@@ -245,7 +251,7 @@ function Cameroon() {
           processedData.push({ Key: keyLabel, Value: sumOfNextArray });
         });
       }
-    });  
+    });
       if (callCount === 0) {
         setFirstProcessedData(processedData);
         console.log(firstprocessedData);
@@ -332,10 +338,13 @@ function Cameroon() {
       <div className="DataDisplay">
         <h2>Received Data</h2>
         <div className="DataContainer">
-          <div className="ProcessedData">{processedDataFirst}</div>
+        {loading ? (
+            <CustomSpinner />
+          ) : (
+            <>
+            <div className="ProcessedData">{processedDataFirst}</div>
           <div className="ProcessedData">{processedDataSecond}</div>
-          
-        <div className='ProcessedData'>
+          <div className='ProcessedData'>
         {comparisonData ? (
           <table>
             <thead>
@@ -357,6 +366,8 @@ function Cameroon() {
           <div>No comparison data available</div>
         )}
         </div>
+            </>
+           )}
           <ToastContainer />
         </div>
       </div>
