@@ -20,7 +20,7 @@ function Cameroon() {
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
   let callCount = 0;
-  const url = 'http://192.168.0.206:3001/proxy/Cameroon';
+  const url = 'http://localhost:3001/proxy/cameroon';
 
   React.useEffect(() => {
     compareData();
@@ -166,10 +166,11 @@ function Cameroon() {
     const secondToUnixTime1 = formatDateToISOString(secondToDate);
 
     try {
-      const firstFromUnixTime:any = moment.tz(firstFromUnixTime1, 'Africa/Lagos').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-      const firstToUnixTime:any = moment.tz(firstToUnixTime1, 'Africa/Lagos').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-      const secondFromUnixTime:any = moment.tz(secondFromUnixTime1, 'Africa/Lagos').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
-      const secondToUnixTime:any = moment.tz(secondToUnixTime1, 'Africa/Lagos').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      const firstFromUnixTime:any = moment.tz(firstFromUnixTime1, 'Africa/Douala').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      const firstToUnixTime:any = moment.tz(firstToUnixTime1, 'Africa/Douala').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      const secondFromUnixTime:any = moment.tz(secondFromUnixTime1, 'Africa/Douala').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      const secondToUnixTime:any = moment.tz(secondToUnixTime1, 'Africa/Douala').format('YYYY-MM-DDTHH:mm:ss.SSSZ');
+      console.log(secondFromUnixTime);
       const firstRequestData = await performRequest(firstFromUnixTime, firstToUnixTime);
       const secondRequestData = await performRequest(secondFromUnixTime, secondToUnixTime);
 
