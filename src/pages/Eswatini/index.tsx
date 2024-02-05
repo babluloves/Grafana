@@ -20,7 +20,7 @@ function Eswatini() {
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const url = 'http://192.168.0.206:3001/proxy/Eswatini';
+  const url = 'http://localhost:3001/proxy/Eswatini';
   let callCount = 0;
 
   useEffect(() => {

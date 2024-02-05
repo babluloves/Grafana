@@ -33,7 +33,7 @@ const NigeriaRenewals: React.FC = () => {
                   organizedData[date] = {};
                 }
       
-                const hour = new Date(timestampWithoutNanos).getHours();
+                const hour = new Date(timestampWithoutNanos).getHours()+1;
                 organizedData[date][hour] = current; // You can change this to the desired value (e.g., attempted, expected, fail, etc.)
               }
             });
@@ -46,7 +46,7 @@ const NigeriaRenewals: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://192.168.0.206:3001/proxy/nigeria/renewals';
+        const url = 'http://localhost:3001/proxy/nigeria/renewals';
 
         const response = await fetch(url, {
           method: 'POST',
@@ -61,7 +61,7 @@ const NigeriaRenewals: React.FC = () => {
         console.log(organizedData1);
         const organizedData2 = organizeDataForDisplay(responseData, 'Grace_Retry');
         const organizedData3 = organizeDataForDisplay(responseData, 'Parking_Retry');
-        const organizedData4 = organizeDataForDisplay(responseData, 'Suspend_Chrun');
+        const organizedData4 = organizeDataForDisplay(responseData, 'Suspend_Retry');
         setData1(organizedData1);
         setData2(organizedData2);
         setData3(organizedData3);

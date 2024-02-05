@@ -42,7 +42,7 @@ const EswatiniMonitoring: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://192.168.0.206:3001/proxy/eswatini/activations';
+        const url = 'http://localhost:3001/proxy/eswatini/activations';
 
         const response = await fetch(url, {
           method: 'POST',

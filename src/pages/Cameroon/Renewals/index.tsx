@@ -46,7 +46,7 @@ const CameroonRenewals: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://192.168.0.206:3001/proxy/cameroon/renewals';
+        const url = 'http://localhost:3001/proxy/cameroon/renewals';
 
         const response = await fetch(url, {
           method: 'POST',
