@@ -12,11 +12,13 @@ import CameroonRenewals from "../pages/Cameroon/Renewals";
 import NigeriaRenewals from "../pages/Nigeria/Renewals";
 import ZambiaMonitoring from "../pages/zambia/Monitoring";
 import ZambiaRenewals from "../pages/zambia/Renewals";
+import SystemStatus from "../pages/Dropdown";
+import CongoMonitoring from "../pages/Congo/Monitoring";
 
 export default function AppRoutes() {
-
     return(
     <Routes>
+      <Route path="/" element={<SystemStatus />} />
       <Route path="Eswatini" element={<Eswatini />} />
       <Route path="Nigeria" element={<Nigeria />} />
       <Route path="Cameroon" element={<Cameroon />} />
@@ -29,6 +31,7 @@ export default function AppRoutes() {
       <Route path="cameroon/Renewals" element={<CameroonRenewals/>} />
       <Route path="nigeria/Renewals" element={<NigeriaRenewals/>} />
       <Route path="zambia/Renewals" element={<ZambiaRenewals/>} />
+      <Route path="congo/Monitoring" element={<CongoMonitoring/>} />
     </Routes>
     )
 }

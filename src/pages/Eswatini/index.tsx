@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment-timezone';
 import CustomSpinner from '../Spinner';
+import backendUrl from '../../config';
 
 function Eswatini() {
   const [data, setData] = useState<any[]>([]);
@@ -20,7 +21,7 @@ function Eswatini() {
   const [processedDataSecond, setProcessedDataSecond] = useState<any[]>([]);
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
-  const url = 'http://localhost:3001/proxy/Eswatini';
+  const url = `${backendUrl}/proxy/Eswatini`;
   let callCount = 0;
 
   useEffect(() => {
@@ -284,6 +285,7 @@ function Eswatini() {
 
   return (
     <div className="App">
+      <h2>Eswatini Traffic</h2>
       <div className="DatePickers">
         <div className="DatePickerSection">
           <h3>From</h3>

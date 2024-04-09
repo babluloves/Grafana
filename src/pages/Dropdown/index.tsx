@@ -1,42 +1,21 @@
-import React, { useState } from 'react';
-import Select, { Props as SelectProps, ActionMeta, MultiValue } from 'react-select';
+// src/components/SystemStatus.tsx
 
-interface Option {
-  value: string;
-  label: string;
-}
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const options: Option[] = [
-  { value: 'apple', label: 'Apple' },
-  { value: 'banana', label: 'Banana' },
-  { value: 'orange', label: 'Orange' },
-  { value: 'pear', label: 'Pear' },
-  { value: 'grape', label: 'Grape' },
-];
 
-const MultiSelectDropdown: React.FC = () => {
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-
-  const handleMultiSelectChange = (
-    newValue: MultiValue<Option>,
-    actionMeta: ActionMeta<Option>
-  ) => {
-    if (actionMeta.action === 'remove-value' || actionMeta.action === 'pop-value') {
-      // Handle removal of values if needed
-    }
-    setSelectedOptions(newValue as Option[]);
-  };
-
+const SystemStatus: React.FC = () => { 
+  const Navigate = useNavigate();
+  
   return (
     <div>
-      <Select
-        options={options}
-        isMulti
-        onChange={handleMultiSelectChange}
-        value={selectedOptions}
-      />
+     <h1>status</h1>
+     <button onClick={ () => Navigate("cameroon/monitoring") }>Cameroon Monitoring</button>
+     <button onClick={ () => Navigate("eswatini/monitoring") }>eswatini Monitoring</button>
+     <button onClick={ () => Navigate("Nigeria/monitoring") }>Nigeria Monitoring</button>
+     <button onClick={ () => Navigate("Zambia/monitoring") }>zambia Monitoring</button>
     </div>
   );
 };
 
-export default MultiSelectDropdown;
+export default SystemStatus;

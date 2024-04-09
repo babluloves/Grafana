@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from '../Spinner';
 import moment from 'moment-timezone';
+import backendUrl from '../../config';
 
 function Nigeria() {
   const [data, setData] = useState<any[]>([]);
@@ -20,7 +21,7 @@ function Nigeria() {
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
   let callCount = 0;
-  const url = 'http://localhost:3001/proxy/Nigeria';
+  const url = `${backendUrl}/proxy/Nigeria`;
 
   React.useEffect(() => {
     compareData();
@@ -285,6 +286,7 @@ function Nigeria() {
 
   return (
     <div className="App">
+      <h2>Nigeria Traffic</h2>
       <div className="DatePickers">
         <div className="DatePickerSection">
           <h3>From</h3>

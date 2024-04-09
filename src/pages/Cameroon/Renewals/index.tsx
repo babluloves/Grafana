@@ -3,6 +3,7 @@ import Table from "../../../Components/Tables";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from "../../Spinner";
+import backendUrl from "../../../config";
 
 const CameroonRenewals: React.FC = () => {
   const [data1, setData1] = useState<Record<string, Record<number, number>>>({});
@@ -46,7 +47,7 @@ const CameroonRenewals: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://localhost:3001/proxy/cameroon/renewals';
+        const url = `${backendUrl}/proxy/cameroon/renewals`;
 
         const response = await fetch(url, {
           method: 'POST',
@@ -90,6 +91,7 @@ const CameroonRenewals: React.FC = () => {
         <CustomSpinner /> // Show the spinner while loading
       ) : (
         <>
+          <h2>Cameroon Renewals Sheet</h2>
           <Table title="Active Grace" data={data1} />
           <Table title="Grace Base" data={data2} />
           <Table title="Parking Retry" data={data3} />

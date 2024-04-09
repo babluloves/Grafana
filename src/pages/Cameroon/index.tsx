@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from '../Spinner';
 import moment from 'moment-timezone';
+import backendUrl from '../../config';
 
 function Cameroon() {
   const [data, setData] = useState<any[]>([]);
@@ -20,7 +21,7 @@ function Cameroon() {
   const [comparisonData, setComparisonData] = useState<any[]>([]);
   const [loading, setLoading] = useState(false)
   let callCount = 0;
-  const url = 'http://localhost:3001/proxy/cameroon';
+  const url = `${backendUrl}/proxy/cameroon`;
 
   React.useEffect(() => {
     compareData();
@@ -141,6 +142,7 @@ function Cameroon() {
         throw new Error('Request failed with status: ${response.status}');
       }
     } catch (error) {
+
       console.error('Error occurred during the request:', error);
       throw error;
     }
@@ -286,6 +288,7 @@ function Cameroon() {
 
   return (
     <div className="App">
+      <h2>Cameroon Traffic</h2>
       <div className="DatePickers">
         <div className="DatePickerSection">
           <h3>From</h3>

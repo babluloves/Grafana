@@ -3,6 +3,7 @@ import Table from "../../../Components/Tables";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from "../../Spinner";
+import backendUrl from "../../../config";
 
 const ZambiaMonitoring: React.FC = () => {
   const [data1, setData1] = useState<Record<string, Record<number, number>>>({});
@@ -46,7 +47,7 @@ const ZambiaMonitoring: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://localhost:3001/proxy/zambia/activations';
+        const url = `${backendUrl}/proxy/zambia/activations`;
 
         const response = await fetch(url, {
           method: 'POST',
@@ -91,6 +92,7 @@ const ZambiaMonitoring: React.FC = () => {
         <CustomSpinner /> // Show the spinner while loading
       ) : (
         <>
+          <h2>Zambia Monitoring Sheet</h2>
           <Table title="Activation's" data={data1} />
           <Table title='Renewals' data={data2} />
           <Table title="On demand" data={data3} />

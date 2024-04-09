@@ -3,6 +3,7 @@ import Table from "../../../Components/Tables";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from "../../Spinner";
+import backendUrl from "../../../config";
 
 const NigeriaRenewals: React.FC = () => {
   const [data1, setData1] = useState<Record<string, Record<number, number>>>({});
@@ -46,7 +47,7 @@ const NigeriaRenewals: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = 'http://localhost:3001/proxy/nigeria/renewals';
+        const url = `${backendUrl}/proxy/nigeria/renewals`;
 
         const response = await fetch(url, {
           method: 'POST',
@@ -91,6 +92,7 @@ const NigeriaRenewals: React.FC = () => {
         <CustomSpinner /> // Show the spinner while loading
       ) : (
         <>
+          <h2>Nigeria Renewals sheet</h2>
           <Table title="Active Renewals" data={data1} />
           <Table title="Grace Renewals" data={data2} />
           <Table title="Parking Retry" data={data3} />

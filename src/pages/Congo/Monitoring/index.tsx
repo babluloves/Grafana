@@ -5,11 +5,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import CustomSpinner from "../../Spinner";
 import backendUrl from "../../../config";
 
-const EswatiniMonitoring: React.FC = () => {
+const CongoMonitoring: React.FC = () => {
   const [data1, setData1] = useState<Record<string, Record<number, number>>>({});
   const [data2, setData2] = useState<Record<string, Record<number, number>>>({});
   const [data3, setData3] = useState<Record<string, Record<number, number>>>({});
-  const [data4, setData4] = useState<Record<string, Record<number, number>>>({});
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -43,7 +42,8 @@ const EswatiniMonitoring: React.FC = () => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const url = `${backendUrl}/proxy/eswatini/activations`;
+        const url = `${backendUrl}/proxy/congo/activations`;
+
 
         const response = await fetch(url, {
           method: 'POST',
@@ -57,12 +57,10 @@ const EswatiniMonitoring: React.FC = () => {
         const organizedData1 = organizeDataForDisplay(responseData.data1);
         const organizedData2 = organizeDataForDisplay(responseData.data2);
         const organizedData3 = organizeDataForDisplay(responseData.data3);
-        const organizedData4 = organizeDataForDisplay(responseData.data4)
-
         setData1(organizedData1);
+        console.log(organizedData1);
         setData2(organizedData2);
         setData3(organizedData3);
-        setData4(organizedData4);
         toast.success('Operation succeeded!', {
           position: toast.POSITION.TOP_RIGHT,
           autoClose: 3000, // Duration in milliseconds
@@ -88,11 +86,10 @@ const EswatiniMonitoring: React.FC = () => {
         <CustomSpinner /> // Show the spinner while loading
       ) : (
         <>
-          <h2>Eswatini Monitoring Sheet</h2>
+          <h2>Congo Monitoring Sheet</h2>
           <Table title="Activation's" data={data1} />
           <Table title='Renewals' data={data2} />
           <Table title="On demand" data={data3} />
-          <Table title="On demand failed" data={data4} />
         </>
       )}
       <ToastContainer />
@@ -100,4 +97,4 @@ const EswatiniMonitoring: React.FC = () => {
   );
 };
   
-export default EswatiniMonitoring;
+export default CongoMonitoring;

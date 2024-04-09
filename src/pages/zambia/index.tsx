@@ -283,6 +283,7 @@ function Zambia() {
 
   return (
     <div className="App">
+      <h2>Zambia Traffic</h2>
       <div className="DatePickers">
         <div className="DatePickerSection">
           <h3>From</h3>
